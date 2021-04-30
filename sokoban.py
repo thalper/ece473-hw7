@@ -41,7 +41,10 @@ class SokobanState:
     def deadp(self, problem):
         if self.dead is None:
             # BEGIN_YOUR_CODE
-            raise NotImplementedError('Override me')
+            for b in self.boxes():
+                if not problem.map[b[0]][b[1]].target:
+                    if ((problem.map[b[0]-1][b[1]].wall or problem.map[b[0]+1][b[1]].wall) and (problem.map[b[0]][b[1]-1].wall or problem.map[b[0]][b[1]+1].wall)):
+                        self.dead = True
             # END_YOUR_CODE
         return self.dead
     def all_adj(self, problem):
